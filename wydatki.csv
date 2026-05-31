@@ -1,0 +1,6 @@
+data,kategoria,opis,kwota,typ
+2024-01-05,jedzenie,Biedronka,-120.50,wydatek
+2024-01-07,transport,Paliwo,500,wydatek
+2024-01-10,wynagrodzenie,Praca,-1,przychod
+2024-01-15,rozrywka,Netflix,-45.00,wydatek
+2024-12-20,wynagrodzenie,Wypłata,5000.00,inne
