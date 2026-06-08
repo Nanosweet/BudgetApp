@@ -11,18 +11,31 @@ def wczytaj_dane(path):
         reader_dict = csv.DictReader(f)
         for row in reader_dict:
             utils.waliduj_wiersz(row)
+            transakcje.append(row)
 
-    #try:
-      #  with open(path, newline='') as csvfile:
-            #reader = csv.DictReader(csvfile)
-        #    csv_f = csv.reader(csvfile, delimiter=' ', quotechar='|')
-            #for row in csv_f:
-                #print(', '.join(row))
-                # waliduj wiersz
-                #print(transakcje)
-                #utils.waliduj_wiersz(row)
-    #except FileNotFoundError:
-        #print('File not found')
+        return transakcje
+
+x = wczytaj_dane('wydatki.csv')
+suma = ''
+for a in x:
+    if float(a['kwota']) < 0:
+        a["xyz"] = True
+    print (a)
+
+# Co mozna zrobic z dictionary -> lista
+'''
+    Podlicz liczbe wydatkow
+    podlicz sume kazdej kategorii
+    znajdz najwiekszy wydatek
+    znajdz najmniejszy wydatek
+    wyswietl 3 najdrozsze wydatki
+    oblicz sredni wydatek
+    pokaz liczbe transakcji w kazdej kategorii
+
+'''
 
 
-wczytaj_dane('wydatki.csv')
+    #suma += float(a['kwota'])
+    
+#print (x)
+#print(type(x))
