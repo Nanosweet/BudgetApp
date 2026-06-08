@@ -10,10 +10,7 @@ def wczytaj_dane(path):
     with open(path, newline='', encoding ='utf-8') as f:
         reader_dict = csv.DictReader(f)
         for row in reader_dict:
-            print(utils.waliduj_wiersz(row))
-            #print(f'{row} - ')
-
-
+            utils.waliduj_wiersz(row)
 
     #try:
       #  with open(path, newline='') as csvfile:
@@ -29,8 +26,3 @@ def wczytaj_dane(path):
 
 
 wczytaj_dane('wydatki.csv')
-
-def read_single_line(path):
-    with open(path, newline='') as csvfile:
-         csv_f = csv.reader(csvfile, delimiter=' ', quotechar='|')
-         print(next(csv_f))
