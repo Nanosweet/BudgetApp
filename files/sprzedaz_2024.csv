@@ -1,0 +1,21 @@
+data,sprzedawca,produkt,ilosc,cena_jednostkowa,region
+2024-01-05,Anna Kowalska,Laptop Dell XPS,2,4599.99,Południe
+2024-01-12,Piotr Nowak,Monitor 27 cali,5,1299.00,Centrum
+2024-01-18,Ewa Mazur,Mysz Logitech MX,10,249.00,Północ
+2024-02-03,Anna Kowalska,Klawiatura mechaniczna,3,399.00,Południe
+2024-02-14,Monika Nowakowska,Słuchawki Sony,4,599.00,Zachód
+2024-02-22,Piotr Nowak,Laptop Dell XPS,1,4599.99,Centrum
+2024-03-07,Ewa Mazur,Monitor 27 cali,2,1299.00,Północ
+2024-03-15,Anna Kowalska,Fotel gamingowy,2,2100.00,Południe
+2024-03-28,Monika Nowakowska,Pendrive 128GB,20,79.00,Zachód
+2024-04-02,Piotr Nowak,Słuchawki Sony,6,599.00,Centrum
+2024-04-19,Anna Kowalska,Mysz Logitech MX,8,249.00,Południe
+2024-04-30,Ewa Mazur,Fotel gamingowy,1,2100.00,Północ
+2024-05-11,Monika Nowakowska,Laptop Dell XPS,3,4599.99,Zachód
+2024-05-23,Piotr Nowak,Klawiatura mechaniczna,7,399.00,Centrum
+2024-06-04,Anna Kowalska,Monitor 27 cali,4,1299.00,Południe
+2024-06-17,Ewa Mazur,Pendrive 128GB,15,79.00,Północ
+2024-07-08,Monika Nowakowska,Mysz Logitech MX,12,249.00,Zachód
+2024-07-21,Piotr Nowak,Fotel gamingowy,2,2100.00,Centrum
+2024-08-05,Anna Kowalska,Słuchawki Sony,5,599.00,Południe
+2024-08-19,Ewa Mazur,Laptop Dell XPS,2,4599.99,Północ

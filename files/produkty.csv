@@ -1,0 +1,16 @@
+id,nazwa,kategoria,cena,stan_magazynowy,ocena,dostepny
+1,Laptop Dell XPS,Elektronika,4599.99,12,4.7,tak
+2,Mysz Logitech MX,Elektronika,249.00,45,4.5,tak
+3,Kawa Arabica 500g,Spożywcze,34.90,200,4.8,tak
+4,Krzesło biurowe,Meble,899.00,8,4.2,tak
+5,Monitor 27 cali,Elektronika,1299.00,0,4.6,nie
+6,Herbata Earl Grey,Spożywcze,18.50,150,4.3,tak
+7,Biurko stojące,Meble,1450.00,3,4.9,tak
+8,Klawiatura mechaniczna,Elektronika,399.00,23,4.8,tak
+9,Oliwa z oliwek,Spożywcze,42.00,80,4.6,tak
+10,Lampka biurkowa,Meble,189.00,0,3.9,nie
+11,Słuchawki Sony,Elektronika,599.00,17,4.4,tak
+12,Makaron pełnoziarnisty,Spożywcze,8.90,300,4.1,tak
+13,Fotel gamingowy,Meble,2100.00,5,4.7,tak
+14,Pendrive 128GB,Elektronika,79.00,60,4.0,tak
+15,Czekolada gorzka,Spożywcze,12.50,0,4.9,nie
