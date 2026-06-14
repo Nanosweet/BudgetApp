@@ -38,9 +38,8 @@ print(type(content.keys()))
     otworz plik csv zrob na dict
     Są dwie ważne zasady przy otwieraniu pliku CSV:
 
-1. 1. Czym jest csv.DictReader?
+1. Czym jest csv.DictReader?
 csv.DictReader to klasa w Pythonie, która czyta plik CSV i zwraca każdy wiersz jako słownik (dict). Klucze słownika to nagłówki kolumn z pierwszego wiersza CSV.
-
 Dzięki temu zamiast odwoływać się do danych przez indeks (np. row[0]), używasz nazwy kolumny (np. row["imie"]) — kod jest czytelniejszy i odporniejszy na zmiany.
 
 import csv
