@@ -76,7 +76,13 @@ def zadanie1_3():
     except FileNotFoundError as e:
         print(e)
 
-def zadanie1_4():
+# Poziom 2 - średni
+# Zadanie 2.1 Statystyki pensji ('pracownicy.csv')
+# Oblicz i wypisz:
+# - średnią pensję w calej firmie
+# - najwyższą i najniższą pensję ( wraz z imieniem i nazwiskiem )
+def zadanie2_1():
+    srednia_pensja = 0
     try:
         validate_files(files)
         with open(files['pracownicy'], newline='', encoding='utf-8') as p:
@@ -97,29 +103,56 @@ def zadanie1_4():
             # Funkcja lamda pozwalaja filtrowac slowniki klucz wartosc
             max_pensja = max(pensje_pracownikow, key=lambda x: x['pensja'])
             min_pensja = min(pensje_pracownikow, key=lambda x: x['pensja'])
-            #print(pensje_pracownikow['dzial'])
             
+            srednia_pensja = round(sum(tylko_pensje)/len(tylko_pensje),2)
 
-
-            print (f"Najlepiej zarabia: {max_pensja['imie']} - {max_pensja['pensja']}")
-            print (f"Najlepiej zarabia: {min_pensja['imie']} - {min_pensja['pensja']}")
-            
-
-            print (round(sum(tylko_pensje)/len(tylko_pensje),2))
-            
-            suma = 0
-            dzial_it = []
             for p in pensje_pracownikow:
-                if p['dzial'] == 'IT':
-                    dzial_it.append(p)
-                    suma += p['pensja']
-            print(f"Średnia zarobków w dziale IT wynosi: {suma/len(dzial_it)}")
-            print()  
+                print (p['dzial'])
+            
+            
+            suma_it = 0
+            suma_hr = 0
+            suma_zaz = 0
+            suma_sprz = 0
+            dzial_it = []
+            dzial_it2 = [x for x in pensje_pracownikow if x['dzial'] == 'IT']
+            dzial_hr = []
+            dzial_zaz = []
+            dzial_sprz = []
+            for p in pensje_pracownikow:
+                match p['dzial']:
+                    case 'IT':
+                        dzial_it.append(p)
+                        suma_it += p['pensja']
+                    case 'HR':
+                        dzial_hr.append(p)
+                        suma_hr += p['pensja']
+                    case 'Zarząd':
+                        dzial_zaz.append(p)
+                        suma_zaz += p['pensja']
+                    case 'Sprzedaż':
+                        dzial_sprz.append(p)
+                        suma_sprz += p['pensja']
+            
                     #print (sum(p['pensja'])/len(pensje_pracownikow))
                 #pass
             #print(dzial_it)
 
 
+            print(f"2.1 a) Średnia pensja z całej firmie wynosi {srednia_pensja}")
+            
+            print (f"2.1 b) Najwicej zarabia: {max_pensja['imie']} - {max_pensja['pensja']}")
+            print (f"2.1 b) Najmniej zarabia: {min_pensja['imie']} - {min_pensja['pensja']}")
+            print("2.1 c)" )
+            print(f"    Średnia zarobków w dziale IT wynosi: {suma_it/len(dzial_it)}")
+            
+            print(f"    Średnia zarobków w dziale ZARZAD wynosi: {suma_zaz/len(dzial_zaz)}") 
+            
+            print(f"    Średnia zarobków w dziale HR wynosi: {suma_hr/len(dzial_hr)}") 
+
+            suma_it2 = sum(person['pensja'] for person in dzial_it2)
+            #suma += [dzial_it2, key=lambda x: x['pensja']]
+            print(suma_it2, "#######")
 
     except FileNotFoundError as e:
         print (e)
@@ -130,4 +163,4 @@ def zadanie1_4():
 
 
 
-print (zadanie1_4())
+print (zadanie2_1())
