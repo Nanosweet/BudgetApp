@@ -81,19 +81,53 @@ def zadanie1_4():
         validate_files(files)
         with open(files['pracownicy'], newline='', encoding='utf-8') as p:
             reader = csv.DictReader(p)
-            pensje_pracownikow= []
-            #srednia_pensja = [row for row in reader if(max(float(row['pensja']))) or (min(float(row['pensja'])))]
+            pensje_pracownikow = []
+            tylko_pensje = []
+            #dzial_it = [row for row in reader if row['dzial'] == 'IT']
+
             for row in reader:
-                #srednia_pensja = [row ]
-                
-                #pensje_pracownikow.append(float(row['pensja']))
+                #srednia_pensja = [row ]\
+                row['pensja'] = float(row['pensja'])
                 pensje_pracownikow.append(row)
-                #pensje_pracownikow.append(min(float(row['pensja'])))
+                tylko_pensje.append(row['pensja'])
             #print (max(pensje_pracownikow))
+            #print (pensje_pracownikow['pensja'])
             #print (min(pensje_pracownikow))
-            print (pensje_pracownikow)
-            #for p in pensje_pracownikow:
+
+            # Funkcja lamda pozwalaja filtrowac slowniki klucz wartosc
+            max_pensja = max(pensje_pracownikow, key=lambda x: x['pensja'])
+            min_pensja = min(pensje_pracownikow, key=lambda x: x['pensja'])
+            #print(pensje_pracownikow['dzial'])
+            
+
+
+            print (f"Najlepiej zarabia: {max_pensja['imie']} - {max_pensja['pensja']}")
+            print (f"Najlepiej zarabia: {min_pensja['imie']} - {min_pensja['pensja']}")
+            
+
+            print (round(sum(tylko_pensje)/len(tylko_pensje),2))
+            
+            suma = 0
+            dzial_it = []
+            for p in pensje_pracownikow:
+                if p['dzial'] == 'IT':
+                    dzial_it.append(p)
+                    suma += p['pensja']
+            print(f"Średnia zarobków w dziale IT wynosi: {suma/len(dzial_it)}")
+            print()  
+                    #print (sum(p['pensja'])/len(pensje_pracownikow))
+                #pass
+            #print(dzial_it)
+
+
+
     except FileNotFoundError as e:
         print (e)
+
+# Zadanie 2.2
+# srednia p
+
+
+
 
 print (zadanie1_4())
