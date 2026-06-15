@@ -59,6 +59,10 @@ def zadanie1_2x():
     except FileNotFoundError as e:
         print(e)
 
+# Zadanie 1.3 - Produkty dostępne('produkty.csv')
+# Wypisz nazwy i ceny wszystkich produktów, które są dostępne
+# ('dostępny == "tak"') = posortowane od nadroższego do najtańszego
+
 def zadanie1_3():
     try:
         validate_files(files)
@@ -72,5 +76,24 @@ def zadanie1_3():
     except FileNotFoundError as e:
         print(e)
 
+def zadanie1_4():
+    try:
+        validate_files(files)
+        with open(files['pracownicy'], newline='', encoding='utf-8') as p:
+            reader = csv.DictReader(p)
+            pensje_pracownikow= []
+            #srednia_pensja = [row for row in reader if(max(float(row['pensja']))) or (min(float(row['pensja'])))]
+            for row in reader:
+                #srednia_pensja = [row ]
+                
+                #pensje_pracownikow.append(float(row['pensja']))
+                pensje_pracownikow.append(row)
+                #pensje_pracownikow.append(min(float(row['pensja'])))
+            #print (max(pensje_pracownikow))
+            #print (min(pensje_pracownikow))
+            print (pensje_pracownikow)
+            #for p in pensje_pracownikow:
+    except FileNotFoundError as e:
+        print (e)
 
-print (zadanie1_3())
+print (zadanie1_4())
