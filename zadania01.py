@@ -81,6 +81,7 @@ def zadanie1_3():
 # Oblicz i wypisz:
 # - średnią pensję w calej firmie
 # - najwyższą i najniższą pensję ( wraz z imieniem i nazwiskiem )
+# - średnią pensję osobno dla każdego działu
 def zadanie2_1():
     srednia_pensja = 0
     try:
@@ -89,25 +90,16 @@ def zadanie2_1():
             reader = csv.DictReader(p)
             pensje_pracownikow = []
             tylko_pensje = []
-            #dzial_it = [row for row in reader if row['dzial'] == 'IT']
 
             for row in reader:
-                #srednia_pensja = [row ]\
                 row['pensja'] = float(row['pensja'])
                 pensje_pracownikow.append(row)
                 tylko_pensje.append(row['pensja'])
-            #print (max(pensje_pracownikow))
-            #print (pensje_pracownikow['pensja'])
-            #print (min(pensje_pracownikow))
-
-            # Funkcja lamda pozwalaja filtrowac slowniki klucz wartosc
+                
             max_pensja = max(pensje_pracownikow, key=lambda x: x['pensja'])
             min_pensja = min(pensje_pracownikow, key=lambda x: x['pensja'])
             
-            srednia_pensja = round(sum(tylko_pensje)/len(tylko_pensje),2)
-
-            for p in pensje_pracownikow:
-                print (p['dzial'])
+            srednia_pensja_w_firmie = round(sum(tylko_pensje)/len(tylko_pensje),2)
             
             
             suma_it = 0
@@ -115,7 +107,12 @@ def zadanie2_1():
             suma_zaz = 0
             suma_sprz = 0
             dzial_it = []
-            dzial_it2 = [x for x in pensje_pracownikow if x['dzial'] == 'IT']
+            
+            # Mozna dodac do dzialu w petli for - dluzsza wersja
+            # Tutaj dwie linijki zalatwiaja sprawe
+            dzial_it2 = [dzial for dzial in pensje_pracownikow if dzial['dzial'] == 'IT']
+            suma_it2 = sum(person['pensja'] for person in dzial_it2)
+            
             dzial_hr = []
             dzial_zaz = []
             dzial_sprz = []
@@ -133,34 +130,85 @@ def zadanie2_1():
                     case 'Sprzedaż':
                         dzial_sprz.append(p)
                         suma_sprz += p['pensja']
-            
-                    #print (sum(p['pensja'])/len(pensje_pracownikow))
-                #pass
-            #print(dzial_it)
 
 
-            print(f"2.1 a) Średnia pensja z całej firmie wynosi {srednia_pensja}")
-            
-            print (f"2.1 b) Najwicej zarabia: {max_pensja['imie']} - {max_pensja['pensja']}")
-            print (f"2.1 b) Najmniej zarabia: {min_pensja['imie']} - {min_pensja['pensja']}")
-            print("2.1 c)" )
-            print(f"    Średnia zarobków w dziale IT wynosi: {suma_it/len(dzial_it)}")
-            
-            print(f"    Średnia zarobków w dziale ZARZAD wynosi: {suma_zaz/len(dzial_zaz)}") 
-            
-            print(f"    Średnia zarobków w dziale HR wynosi: {suma_hr/len(dzial_hr)}") 
+            print(f"""
+            2.1 a) Średnia pensja z całej firmie wynosi - {srednia_pensja_w_firmie}
+            2.1 b) Najwicej zarabia: {max_pensja['imie']} - {max_pensja['pensja']}
+            2.1 b) Najmniej zarabia: {min_pensja['imie']} - {min_pensja['pensja']}
+            2.1 c) 
+                Średnia zarobków w dziale IT wynosi: {suma_it/len(dzial_it)}
+                Średnia zarobków w dziale ZARZAD wynosi: {suma_zaz/len(dzial_zaz)}
+                Średnia zarobków w dziale HR wynosi: {suma_hr/len(dzial_hr)}
+                Średnia zarobków w dziale SPRZEDAŻY wynosi: {suma_sprz/len(dzial_sprz)}
+                """) 
 
-            suma_it2 = sum(person['pensja'] for person in dzial_it2)
-            #suma += [dzial_it2, key=lambda x: x['pensja']]
-            print(suma_it2, "#######")
 
     except FileNotFoundError as e:
         print (e)
 
-# Zadanie 2.2
-# srednia p
+# Zadanie 2.2 - Brak danych ('oceny_uczniow.csv')
+# oblicz srednia tylko z dostepnych ocen ( pomijaj puste )
+# 
+
+
+def zadanie2_2():
+    try:
+        validate_files(files)
+        
+        with open(files['oceny_uczniow'], newline='', encoding='utf-8') as oceny:
+            oceny_uczniow = csv.DictReader(oceny)
+            przedmioty = [
+                "matematyka",
+                "fizyka",
+                "historia",
+                "jezyk_angielski",
+            ]
+        
+        for row in oceny_uczniow:
+
+            suma = 0
+            licznik = 0
+
+            for przedmiot in przedmioty:
+                if row[przedmiot] != "":
+                    ocena = int(row[przedmiot])
+                    suma += ocena
+                    licznik += 1
+                    row[przedmiot] = ocena  # opcjonalnie: zamiana na int
+
+            if licznik > 0:
+                srednia = suma / licznik
+            else:
+                srednia = 0
+            
+            print(f"{row['imie']} -> średnia: {srednia:.2f} | dane: {row}")
+            
+           # suma_przedmiotow = {przedmiot: 0 for przedmiot in przedmioty}
+           # licznik_przedmiotow = {przedmiot: 0 for przedmiot in przedmioty}
+            
+           # for row in oceny_uczniow:   # for po {}
+              # for przedmiot in przedmioty:  # for po przedmiotach
+               #     if row[przedmiot] != "":    # jesli puste to zostaje ""
+                        #row[przedmiot] = int(row[przedmiot])
+                        
+                  #      wartosc = int(row[przedmiot])
+                 #       suma_przedmiotow[przedmiot] += wartosc
+               #         licznik_przedmiotow[przedmiot] += 1
+           #     print (row)
+    # wypisanie średnich
+        print("\nŚrednie z przedmiotów:")
+
+       # for przedmiot in przedmioty:
+       #     if licznik_przedmiotow[przedmiot] > 0:
+        #        srednia = suma_przedmiotow[przedmiot] / licznik_przedmiotow[przedmiot]
+       ##         print(f"{przedmiot}: {srednia:.2f}")
+        #else:
+            #print(f"{przedmiot}: brak danych")
+        
+    except FileNotFoundError as e:
+        print (e)
 
 
 
-
-print (zadanie2_1())
+print (zadanie2_2())
