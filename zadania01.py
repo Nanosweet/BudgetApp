@@ -210,7 +210,7 @@ def zadanie2_2():
         print (e)
 
 
-def powtorka():
+def zadania2_2_2(x: int) -> None:
     try:
         validate_files(files)
         with open(files['pracownicy'], newline='', encoding='utf-8') as file:
@@ -218,13 +218,78 @@ def powtorka():
             pracownicy = [
                 {**row, 'pensja': float(row['pensja'])}
                 for row in reader
-                ]
-            #print(type(reader))
-            print(max(pracownicy, key=lambda x: x['pensja']))
+            ]
+            max_pensja = max(pracownicy, key=lambda x: x['pensja'])
+            min_pensja = min(pracownicy, key=lambda x: x['pensja'])
+
+            suma = 0
+            for p in pracownicy:
+                suma += p['pensja']
+            srednia = suma/len(pracownicy)
+
+            dzial_it = [dzial for dzial in pracownicy if dzial['dzial'] == "IT"]
+            suma_it = sum(x['pensja'] for x in dzial_it)
+            dzial_hr = [dzial for dzial in pracownicy if dzial['dzial'] == "HR"]
+            suma_hr = sum(x['pensja'] for x in dzial_it)
+            dzial_sprz = [dzial for dzial in pracownicy if dzial['dzial'] == "Sprzedaż"]
+            suma_sprz = sum(x['pensja'] for x in dzial_sprz)
+            dzial_zaz = [dzial for dzial in pracownicy if dzial['dzial'] == "Zarząd"]
+            suma_zaz = sum(x['pensja'] for x in dzial_zaz)
+
+        match x:
+            case 1:                 
+                print(f"{round(srednia, 2)}")                
+            case 2:
+                print(f"Najwyższą pensję w całej firmie ma: {max_pensja['imie']} {max_pensja['nazwisko']} - {max_pensja['pensja']}")
+                print(f"Najniższą pensję w całej firmie ma: {min_pensja['imie']} {min_pensja['nazwisko']} - {min_pensja['pensja']}")
+            case 3:
+                print(f"Srednia pensja w dziale IT: {suma_it/len(dzial_it)}")
+                print(f"Srednia pensja w dziale HR: {suma_hr/len(dzial_hr)}")
+                print(f"Srednia pensja w dziale Sprzedaży: {suma_sprz/len(dzial_sprz)}")
+                print(f"Srednia pensja w dziale Zarząd: {suma_zaz/len(dzial_zaz)}")
+
+    except FileNotFoundError as e:
+        print(e)
+
+
+def zadanie_brak_danych() -> None:
+    try:
+        validate_files(files)
+        with open(files['oceny_uczniow'], newline='', encoding='utf-8') as file:
+            reader = csv.DictReader(file)
+            przedmioty = [
+                'matematyka',
+                'fizyka',
+                'historia',
+                'jezyk_angielski',
+            ]
+            puste = []
+            suma_ocen = 0
+            licznik = 0
+            wynik = []
+            for row in reader:
+                for p in przedmioty:
+                    if row[p] != '':
+                        row[p] = int(row[p])
+                        suma_ocen+=row[p]
+                        licznik += 1
+                
+                    if row[p] == '':
+                        puste.append(row)
+                srednia = suma_ocen / licznik if licznik > 0 else 0
+                wynik.append((row['imie'], round(srednia, 2)))
+            
+            
+            print(*puste, sep='\n')
+            print(*wynik, sep='\n')
+            for s in puste:
+                #print (s)
+                pass
+                    #print(type(row[p]))
 
 
     except FileNotFoundError as e:
         print(e)
 
 
-print (powtorka())
+print (zadanie_brak_danych())
