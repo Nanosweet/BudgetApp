@@ -210,5 +210,21 @@ def zadanie2_2():
         print (e)
 
 
+def powtorka():
+    try:
+        validate_files(files)
+        with open(files['pracownicy'], newline='', encoding='utf-8') as file:
+            reader = csv.DictReader(file)
+            pracownicy = [
+                {**row, 'pensja': float(row['pensja'])}
+                for row in reader
+                ]
+            #print(type(reader))
+            print(max(pracownicy, key=lambda x: x['pensja']))
 
-print (zadanie2_2())
+
+    except FileNotFoundError as e:
+        print(e)
+
+
+print (powtorka())
