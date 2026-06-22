@@ -267,6 +267,7 @@ def zadanie_brak_danych() -> None:
             suma_ocen = 0
             licznik = 0
             wynik = []
+            uczniowie = []
             for row in reader:
                 for p in przedmioty:
                     if row[p] != '':
@@ -277,11 +278,17 @@ def zadanie_brak_danych() -> None:
                     if row[p] == '':
                         puste.append(row)
                 srednia = suma_ocen / licznik if licznik > 0 else 0
+                row['srednia'] = round(srednia, 2)
+                uczniowie.append(row)
                 wynik.append((row['imie'], round(srednia, 2)))
             
+            for uczen in sorted(uczniowie, key=lambda x: x['srednia']):
+                print(uczen)
             
+            print("Co najniej jednej ocany brakuje:")
             print(*puste, sep='\n')
-            print(*wynik, sep='\n')
+            #print(*wynik, sep='\n')
+            #print((wynik))
             for s in puste:
                 #print (s)
                 pass
@@ -292,4 +299,30 @@ def zadanie_brak_danych() -> None:
         print(e)
 
 
-print (zadanie_brak_danych())
+def raport_kategorii():
+    validate_files(files)
+    try:
+        with open(files['produkty'], newline='', encoding='utf-8') as file:
+            produkty = csv.DictReader(file)
+            liczba_produktow = 0
+            laczna_wartosc_magazynowa = 0
+            for row in produkty:
+                liczba_produktow +=1
+                row['cena'] = float(row['cena'])
+                row['stan_magazynowy'] = float(row['stan_magazynowy'])
+                laczna_wartosc_magazynowa += row['cena'] * row['stan_magazynowy']
+            print (laczna_wartosc_magazynowa)
+                
+
+                #laczna_wartosc_magazynowa = cena * stanmagazynowy
+            
+
+            print(f"Liczba produktów = {liczba_produktow}")
+            print(f"Łączna wartość magazynowa = {laczna_wartosc_magazynowa}")
+            #print(produkty.keys())
+
+    except FileNotFoundError as e:
+        print(e)
+
+
+print (raport_kategorii())
