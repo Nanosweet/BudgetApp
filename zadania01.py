@@ -3,6 +3,7 @@
 
 import csv
 from pathlib import Path # OOP sprawdzanie pliku i sciezek
+from collections import defaultdict
 
 files = {
     "oceny_uczniow":Path("files/oceny_uczniow.csv"),
@@ -323,6 +324,39 @@ def raport_kategorii():
 
     except FileNotFoundError as e:
         print(e)
+        
+def analiza_sprzedazy():
+    try:
+        validate_files(files)
+        with open(files['sprzedaz'], newline='', encoding='utf-8') as file:
+            reader = csv.DictReader(file)
+            sprzedaz = []
+            
+            for row in reader:
+                row['cena_jednostkowa'] = float(row['cena_jednostkowa'])
+                row['ilosc'] = int(row['ilosc'])             
+                row['przychod'] = row['cena_jednostkowa'] * row['ilosc']
+                sprzedaz.append(row)
+            for s in sorted(sprzedaz, key=lambda x: x['przychod']):
+                print(s)
+    except FileNotFoundError as e:
+        print(e)
+    
+def xx():
 
+    # Grupowanie przychodu wg miesiąca i sprzedawcy
+    miesiac_sprzedawca = defaultdict(lambda: defaultdict(float))
 
-print (raport_kategorii())
+    for s in sprzedaz:
+        miesiac = s['data'][:7]  # np. "2024-03" — zakładam format YYYY-MM-DD
+        sprzedawca = s['sprzedawca']
+        miesiac_sprzedawca[miesiac][sprzedawca] += s['przychod']
+
+    # Najlepszy sprzedawca w każdym miesiącu
+    print("=== Najlepszy sprzedawca w każdym miesiącu ===")
+    for miesiac in sorted(miesiac_sprzedawca):
+        najlepszy = max(miesiac_sprzedawca[miesiac], key=lambda x: miesiac_sprzedawca[miesiac][x])
+        przychod = miesiac_sprzedawca[miesiac][najlepszy]
+        print(f"{miesiac}: {najlepszy} — {przychod:.2f} zł")
+
+print (analiza_sprzedazy())
