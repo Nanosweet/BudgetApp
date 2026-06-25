@@ -331,6 +331,7 @@ def analiza_sprzedazy():
         with open(files['sprzedaz'], newline='', encoding='utf-8') as file:
             reader = csv.DictReader(file)
             sprzedaz = []
+            miesiac_sprzedawca = defaultdict(lambda: defaultdict(float))
             
             for row in reader:
                 row['cena_jednostkowa'] = float(row['cena_jednostkowa'])
@@ -338,7 +339,15 @@ def analiza_sprzedazy():
                 row['przychod'] = row['cena_jednostkowa'] * row['ilosc']
                 sprzedaz.append(row)
             for s in sorted(sprzedaz, key=lambda x: x['przychod']):
-                print(s)
+                #return s
+                pass
+            #for msc_sprz in sprzedaz:
+             #   miesiac = s['data']
+              #  sprzedawca = s['sprzedawca']
+               # miesiac_sprzedaw
+            #for i in miesiac_sprzedawca:
+               # print (i)
+            print (miesiac_sprzedawca)
     except FileNotFoundError as e:
         print(e)
     
