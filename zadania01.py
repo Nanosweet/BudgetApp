@@ -4,6 +4,7 @@
 import csv
 from pathlib import Path # OOP sprawdzanie pliku i sciezek
 from collections import defaultdict
+from Validator import *
 
 files = {
     "oceny_uczniow":Path("files/oceny_uczniow.csv"),
@@ -368,4 +369,6 @@ def xx():
         przychod = miesiac_sprzedawca[miesiac][najlepszy]
         print(f"{miesiac}: {najlepszy} — {przychod:.2f} zł")
 
-print (analiza_sprzedazy())
+#print (analiza_sprzedazy())
+
+#sprawdz_plik = Validator()
