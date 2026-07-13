@@ -372,3 +372,6 @@ def xx():
 #print (analiza_sprzedazy())
 
 #sprawdz_plik = Validator()
+
+
+print(zadania2_2_2(3))
