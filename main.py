@@ -12,5 +12,5 @@ sort_naziwsko = sorted(data, key=lambda x: x['nazwisko'])
 
 pracownicy_z_klasy = EmployeeService(data)
 
-report.print_result(pracownicy_z_klasy.filter_department('HR'))
+report.print_result(pracownicy_z_klasy.filter_department('IT'))
 
