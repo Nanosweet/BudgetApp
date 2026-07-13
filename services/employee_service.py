@@ -4,7 +4,7 @@ class EmployeeService():
         self.employees = employees
     def filter_department(self, department):
         return [
-            employee
+            f"{employee['imie']}, {employee['nazwisko']}"          
             for employee in self.employees
             if employee['dzial'] == department
         ]

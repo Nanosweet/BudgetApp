@@ -269,6 +269,22 @@ extrasaction='ignore' jest wygodniejsze przy tworzeniu DictWriter
     oblicz sredni wydatek
     pokaz liczbe transakcji w kazdej kategorii
 
+
+Zadanie 1
+Kwadraty liczb
+
+Masz listę:
+
+numbers = [1, 2, 3, 4, 5]
+
+Utwórz nową listę zawierającą kwadraty liczb.
+
+
+numbers = [1,2,3,4,5]
+
+n = [number **2 for number in numbers]
+print(n)
+
 '''
 
 
