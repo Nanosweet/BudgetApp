@@ -12,7 +12,7 @@ class GradeService:
         ]
         
     def get_avg_grade(self):
-        srednie = []
+        srednia = []
         for oceny in self.students:
             suma = 0
             licznik = 0
@@ -24,9 +24,9 @@ class GradeService:
                     licznik +=1
                     
             srednia = suma / licznik if licznik > 0 else 0
-            srednie.append((oceny['imie'], round(srednia, 1)))
+            srednia.append((oceny['imie'], round(srednia, 1)))
             
-        return srednie
+        return srednia
     def get_empty_grade(self):
         empty = []
         for s in self.students:
