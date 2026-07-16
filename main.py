@@ -4,6 +4,7 @@ from report import Report
 from services.employee_service import EmployeeService
 from services.products_service import ProductsService
 from services.grade_service import GradeService
+from services.sales_service import SalesService
 
 repo = CsvRepository()
 report = Report()
@@ -12,6 +13,7 @@ sort_naziwsko = sorted(data_employees, key=lambda x: x['nazwisko'])
 pracownicy = EmployeeService(data_employees)
 produkty = ProductsService(repo.load(files['produkty']))
 oceny = GradeService(repo.load(files['oceny_uczniow']))
+sprzedaz = SalesService(repo.load(files['sprzedaz']))
 
 def zadanie1_1():  
     report.print_result(pracownicy.get_employees())
@@ -39,5 +41,6 @@ def zadanie2_2a():
 
 def zadanie2_2c():
     report.result(oceny.get_empty_grade())
-#
-zadanie2_2c()
+def zadanie3_1a():
+    report.result(sprzedaz.overall_earnings())
+zadanie3_1a()
